@@ -7,7 +7,7 @@
 ## Requirements for this repo
    python3.6 or higher
    Pytorch 1.1
-   cocoapi 
+   cocoapi
    opencv-python
    Cython
    numba
@@ -68,8 +68,8 @@
 	
 	
 ## TODO
-   - [] Some Efficient pretrained models and mAP report in the wilderface
-   - [] Application demos by convert the onnx to other formats (mnn,ncnn,caffe for HUAWEI' nnie and npu) 
+   - [ ] Some Efficient pretrained models and mAP report in the wilderface
+   - [ ] Application demos by convert the onnx to other formats (mnn,ncnn,caffe for HUAWEI' nnie and npu) 
    
 ## Reference
    * Most refered to [CenterNet](https://github.com/xingyizhou/centernet) by[xingyizhou](https://github.com/xingyizhou)
