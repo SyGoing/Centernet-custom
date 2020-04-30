@@ -130,7 +130,7 @@ class MobileNetv2Det(nn.Module):
     def __init__(self,heads,head_conv,width_mult=1.,is_train=True):
         super(MobileNetv2Det, self).__init__()
         self.inplanes = 32
-        self.last_channel=24  #backbone
+        self.last_channel=64  #backbone
         self.deconv_with_bias = False
         self.is_train=is_train
         self.heads = heads
@@ -186,44 +186,46 @@ class MobileNetv2Det(nn.Module):
 
         for head in sorted(self.heads):
              num_output = self.heads[head]
-             fc = nn.Conv2d(
-                 in_channels=self.last_channel,
-                 out_channels=num_output,
-                 kernel_size=1,
-                 stride=1,
-                 padding=0
-             )
-             if 'hm' in head:
-                 fc.bias.data.fill_(-2.19)
-             else:
-                 fill_fc_weights(fc)
-             self.__setattr__(head, fc)
 
-
-             # if head_conv > 0:
-             #   fc = nn.Sequential(
-             #       nn.Conv2d(self.last_channel, head_conv,
-             #                 kernel_size=3, padding=1, bias=True),
-             #       nn.ReLU(inplace=True),
-             #       nn.Conv2d(head_conv, num_output,
-             #                kernel_size=1, stride=1, padding=0))
-             #   if 'hm' in head:
-             #       fc[-1].bias.data.fill_(-2.19)
-             #   else:
-             #       fill_fc_weights(fc)
+             #original centerface's structure
+             # fc = nn.Conv2d(
+             #     in_channels=self.last_channel,
+             #     out_channels=num_output,
+             #     kernel_size=1,
+             #     stride=1,
+             #     padding=0
+             # )
+             # if 'hm' in head:
+             #     fc.bias.data.fill_(-2.19)
              # else:
-             #   fc = nn.Conv2d(
-             #       in_channels=self.last_channel,
-             #       out_channels=num_output,
-             #       kernel_size=1,
-             #       stride=1,
-             #       padding=0
-             #   )
-             #   if 'hm' in head:
-             #       fc.bias.data.fill_(-2.19)
-             #   else:
-             #       fill_fc_weights(fc)
+             #     fill_fc_weights(fc)
              # self.__setattr__(head, fc)
+
+
+             if head_conv > 0:
+               fc = nn.Sequential(
+                   nn.Conv2d(self.last_channel, head_conv,
+                             kernel_size=3, padding=1, bias=True),
+                   nn.ReLU(inplace=True),
+                   nn.Conv2d(head_conv, num_output,
+                            kernel_size=1, stride=1, padding=0))
+               if 'hm' in head:
+                   fc[-1].bias.data.fill_(-2.19)
+               else:
+                   fill_fc_weights(fc)
+             else:
+               fc = nn.Conv2d(
+                   in_channels=self.last_channel,
+                   out_channels=num_output,
+                   kernel_size=1,
+                   stride=1,
+                   padding=0
+               )
+               if 'hm' in head:
+                   fc.bias.data.fill_(-2.19)
+               else:
+                   fill_fc_weights(fc)
+             self.__setattr__(head, fc)
 
 
     def init_weights(self, pretrained=True):

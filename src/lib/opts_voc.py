@@ -26,7 +26,7 @@ class opts(object):
         self.parser.add_argument('--demo', default='../images/test_5.jpg',
                                  help='path to image/ image folders/ video. '
                                       'or "webcam"')
-        self.parser.add_argument('--load_model', default='',
+        self.parser.add_argument('--load_model', default='../models/model_last_mv2context64.pth',
                                  help='path to pretrained model')
         self.parser.add_argument('--resume', action='store_true',
                                  help='resume an experiment. '
@@ -64,7 +64,7 @@ class opts(object):
                                       'res_18 | res_101 | resdcn_18 | resdcn_101 |'
                                       'dlav0_34 | dla_34 | hourglass | mv2relu | '
                                       'mv2relu6_10 | mv2dcn | reslink_18 | ghostnet')
-        self.parser.add_argument('--head_conv', type=int, default=24,  #
+        self.parser.add_argument('--head_conv', type=int, default=64,  #
                                  help='conv layer channels for output head'
                                       '0 for no conv layer'
                                       '-1 for default setting(64): '

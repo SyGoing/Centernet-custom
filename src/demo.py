@@ -7,7 +7,7 @@ import _init_paths
 import os
 import cv2
 
-from opts import opts
+from opts_voc import opts
 from detectors.detector_factory import detector_factory
 
 image_ext = ['jpg', 'jpeg', 'png', 'webp']
