@@ -5,16 +5,16 @@
    For application, I have provided the python shell to convert the *.pth to onnx.
 
 ## Requirements for this repo
-   python3.6 or higher
-   Pytorch 1.1
-   cocoapi
-   opencv-python
-   Cython
-   numba
-   progress
-   matplotlib
-   easydict
-   scipy
+  * python>=3.6 
+  * Pytorch>=1.1
+  * cocoapi
+  * opencv-python
+  * Cython
+  * numba
+  * progress
+  * matplotlib
+  * easydict
+  * scipy
    
    Anaconda 3 is recommended
    
