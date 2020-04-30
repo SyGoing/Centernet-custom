@@ -26,14 +26,13 @@
 	 
 ### Training wilderface with centerface's structure(relu) without keypoints
    in  the ./src/main.py : from opts_voc import opts  or from opts_coco import opts 
-	 cd ./src/, python main.py 
+   cd ./src/, python main.py 
 	 
 ### Training wilderface with centerface's structure(relu) with keypoints
    *  (1) heatmap way just like the original CenterNet's person keypoints
-	  If you want to train the model with keypoints , you need to generate two json format annotations for coco format in the data/wilderface/ as follows:
-	  wildertrain.json and wilderval.json by the VOC2COCOtrain.py and VOC2COCOval.py in the ./data dir .
+	  If you want to train the model with keypoints , you need to generate two json format annotations for coco format in the data/wilderface/ as follows:wildertrain.json and wilderval.json by the VOC2COCOtrain.py and VOC2COCOval.py in the ./data dir .
       in  the ./src/main.py : from opts_hplm import opts
-	  cd ./src/, python main.py 
+      cd ./src/, python main.py 
 	  
    * (2) Just directly regress keypoints by coordinates
 	   Actually,the Centerface's keypoints regression
