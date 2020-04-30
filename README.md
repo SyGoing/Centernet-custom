@@ -1,5 +1,6 @@
 # Custom Centernet for face detection and other object detection tasks. 
-   In this repo, you can training object detection tasks with many other backbones not only the backbones in this repo. 
+   In this repo, you can training object detection tasks with many other backbones not only the backbones in this repo.
+   Refered linknet(For segmentation), I desigined the linknet backend model for object detection.
    Since I am used to use the voc format dataset(the data is always marked by LabelImg), the voc format dataset has been provided. 
    Anyway, you could also use the centernet original coco format to train the model.
    For application, I have provided the python shell to convert the *.pth to onnx.
