@@ -75,11 +75,11 @@
    * Most refered to [CenterNet](https://github.com/xingyizhou/centernet) by[xingyizhou](https://github.com/xingyizhou)
    * [Centerface](https://github.com/Star-Clouds/CenterFace) by[Star-Clouds](https://github.com/Star-Clouds)  
    * [Ultra-Light-Fast-Generic-Face-Detector-1MB](https://github.com/Linzaer/Ultra-Light-Fast-Generic-Face-Detector-1MB) by[Linzaer](https://github.com/Linzaer)
-   * [CenterFace.pytorch](https://github.com/chenjun2hao/CenterFace.pytorch) by[chenjun2hao](https://github.com/chenjun2hao)
+   * [CenterFace.pytorch](https://github.com/chenjun2hao/CenterFace.pytorch) by [chenjun2hao](https://github.com/chenjun2hao)
    
-   * [CenterMulti](https://github.com/bleakie/CenterMulti) by[bleakie](https://github.com/bleakie)
+   * [CenterMulti](https://github.com/bleakie/CenterMulti) by [bleakie](https://github.com/bleakie)
    
-   * [TensorRT-CenterNet](https://github.com/CaoWGG/TensorRT-CenterNet) by[CaoWGG](https://github.com/CaoWGG)
+   * [TensorRT-CenterNet](https://github.com/CaoWGG/TensorRT-CenterNet) by [CaoWGG](https://github.com/CaoWGG)
    
    
    
