@@ -67,7 +67,7 @@ python demo.py --demo [img|video|webcam] --load_model [model_path,../models/mode
 	
 	
 ## TODO
-   - [ ] Some Efficient pretrained models and mAP report in the wilderface
+   - [x] Some Efficient pretrained models and mAP report in the wilderface
    - [ ] Application demos by convert the onnx to other formats (mnn,ncnn,caffe for HUAWEI' nnie and npu) 
    
 ## Reference
