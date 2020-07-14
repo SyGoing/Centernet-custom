@@ -57,6 +57,12 @@ python demo.py --demo [img|video|webcam] --load_model [model_path,../models/mode
  * evaluating
       GroungTruth: wider_face_val.mat, wider_easy_val.mat, wider_medium_val.mat,wider_hard_val.mat
       python evaluation.py -p <your prediction dir> -g <groud truth dir>
+	
+ * the pretrained model's ap (face confidence>0.4 iouthreshold=0.4),
+resolution|Easy Set|Medium Set|Hard Set
+------|--------|----------|--------
+640x640  |0.872|0.839|0.655
+800x800 |0.855 |0.836|0.715
 	  
 ## Convert model to onnx
   import relative opts(eg. from opts_voc import opts ) in the evaluation_on_widerface.py 
