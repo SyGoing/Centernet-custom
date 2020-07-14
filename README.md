@@ -58,7 +58,7 @@ python demo.py --demo [img|video|webcam] --load_model [model_path,../models/mode
       GroungTruth: wider_face_val.mat, wider_easy_val.mat, wider_medium_val.mat,wider_hard_val.mat
       python evaluation.py -p <your prediction dir> -g <groud truth dir>
 	
- * the pretrained model's ap (face confidence>0.4 iouthreshold=0.4)
+ * the pretrained model's ap on the wilderface (face confidence>0.4 iouthreshold=0.4)
  
 resolution|Easy Set|Medium Set|Hard Set
 ----------|--------|----------|--------
