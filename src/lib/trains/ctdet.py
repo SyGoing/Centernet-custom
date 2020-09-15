@@ -46,7 +46,9 @@ class CtdetLoss(torch.nn.Module):
           batch['ind'].detach().cpu().numpy(), 
           output['reg'].shape[3], output['reg'].shape[2])).to(opt.device)
 
-      hm_loss += self.crit(output['hm'], batch['hm']) / opt.num_stacks
+      """"添加 ADD 20200731"""
+      hm_loss += self.crit(output['hm'], batch['hm'],batch['hm_weights']) / opt.num_stacks
+      #hm_loss += self.crit(output['hm'], batch['hm']) / opt.num_stacks
       if opt.wh_weight > 0:
         if opt.dense_wh:
           mask_weight = batch['dense_wh_mask'].sum() + 1e-4

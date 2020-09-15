@@ -130,7 +130,11 @@ class CTDetFaceVOCDataset(data.Dataset):
         img_id = self.images[index]
         img_path=self.data_dir +f"/JPEGImages/{img_id}.jpg"
 
-        anns = self._get_annotation(img_id)
+        annotationFile = self.data_dir + f"/Annotations/{img_id}.xml"
+
+        anns = []
+        if os.path.exists(annotationFile):
+            anns = self._get_annotation(img_id)
 
         num_objs = min(len(anns), self.max_objs)
         img = cv2.imread(img_path)
@@ -182,6 +186,8 @@ class CTDetFaceVOCDataset(data.Dataset):
         trans_output = get_affine_transform(c, s, 0, [output_w, output_h])
 
         hm = np.zeros((num_classes, output_h, output_w), dtype=np.float32)
+        hm_posweight=np.zeros((num_classes, output_h, output_w), dtype=np.float32)
+
         wh = np.zeros((self.max_objs, 2), dtype=np.float32)
         dense_wh = np.zeros((2, output_h, output_w), dtype=np.float32)
         reg = np.zeros((self.max_objs, 2), dtype=np.float32)
@@ -213,6 +219,16 @@ class CTDetFaceVOCDataset(data.Dataset):
                     [(bbox[0] + bbox[2]) / 2, (bbox[1] + bbox[3]) / 2], dtype=np.float32)
                 ct_int = ct.astype(np.int32)
                 draw_gaussian(hm[cls_id], ct_int, radius)
+
+                """添加正样本的权重弱监督，给大目标更大的权重，提高目标整体的质置信度"""
+                mxface = 300
+                miface = 25
+                mxline = max(w, h)
+                gamma = (mxline - miface) / (mxface - miface) * 10
+                gamma = min(max(0, gamma), 10) + 1
+                draw_gaussian(hm_posweight[cls_id],ct_int,2,gamma)
+                """"""   """"""
+
                 wh[k] = 1. * w, 1. * h
                 ind[k] = ct_int[1] * output_w + ct_int[0]
                 reg[k] = ct - ct_int
@@ -224,7 +240,7 @@ class CTDetFaceVOCDataset(data.Dataset):
                 gt_det.append([ct[0] - w / 2, ct[1] - h / 2,
                                ct[0] + w / 2, ct[1] + h / 2, 1, cls_id])
 
-        ret = {'input': inp, 'hm': hm, 'reg_mask': reg_mask, 'ind': ind, 'wh': wh}
+        ret = {'input': inp, 'hm': hm, 'hm_weights':hm_posweight,'reg_mask': reg_mask, 'ind': ind, 'wh': wh}
         if self.opt.dense_wh:
             hm_a = hm.max(axis=0, keepdims=True)
             dense_wh_mask = np.concatenate([hm_a, hm_a], axis=0)
